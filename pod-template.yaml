@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
     - name: simple-agent
-      image: alpine:3.19
+      image: k3d-local-registry:5000/jenkins-agente-apictl:3.2.0
       command:
         - cat
       tty: true
