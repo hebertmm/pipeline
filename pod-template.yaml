@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
     - name: simple-agent
-      image: registry.k3d.local:5000/jenkins-agente-apictl:3.2.0
+      image: registry.k3d.local:5000/jenkins-agent-apictl:3.2.0
       command:
         - cat
       tty: true
