@@ -1,3 +1,5 @@
+@Library('minhalib') _
+
 pipeline {
   agent {
     kubernetes {
@@ -23,8 +25,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        echo '[Test] Executando testes automatizados (simulado)...'
-        sh 'sleep 1'
+        saudacao("Hebert")
       }
     }
 
