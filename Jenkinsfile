@@ -28,10 +28,10 @@ pipeline {
       }
     }
 
-    stage('Package') {
+    stage('Versão do apictl') {
       steps {
-        echo '[Package] Empacotando a aplicação (simulado)...'
-        sh 'sleep 1'
+        echo '[APICTL] Teste de versão do apictl (simulado)...'
+        sh 'apictl version'
       }
     }
 
