@@ -6,10 +6,6 @@ pipeline {
     }
   }
 
-  options {
-    timestamps()
-  }
-
   stages {
     stage('Checkout') {
       steps {
