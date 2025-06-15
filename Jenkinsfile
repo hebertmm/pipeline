@@ -9,7 +9,7 @@ pipeline {
   }
 
   environment {
-    DEST_HOST = '192.168.1.4'
+    DEST_HOST = '192.168.1.5'
   }
 
   stages {
