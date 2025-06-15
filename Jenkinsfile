@@ -40,8 +40,10 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        echo '[Deploy] Enviando para ambiente de homologação (simulado)...'
-        sh 'sleep 1'
+        withCredentials([VaultSSHUserPrivateKeyBinding(credentialsId: 'ID', usernameVariable: 'USERNAME', privateKeyVariable: 'KEY', passphraseVariable: 'PASSPHRASE')]) {
+          echo '[Deploy] Realizando o deploy (simulado)...'
+          sh 'echo "Usuário: $USERNAME"'
+        }
       }
     }
   }
