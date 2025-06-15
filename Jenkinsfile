@@ -44,7 +44,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        withCredentials([sshUserPrivateKey(credentialsId: 'winserver_user_ssh', keyFileVariable: 'SSH_KEY', passphraseVariable: 'b', usernameVariable: 'USERNAME')]) {
+        withCredentials([sshUserPrivateKey(credentialsId: 'winserver_user_ssh', keyFileVariable: 'SSH_KEY', usernameVariable: 'USERNAME')]) {
           echo '[Deploy] Realizando o deploy (simulado)...'
           sh '''
             ssh -i $SSH_KEY -o StrictHostKeyChecking=no $USERNAME@$DEST_HOST "dir C:\\temp || ls /c/temp"
