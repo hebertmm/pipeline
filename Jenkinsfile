@@ -12,14 +12,16 @@ pipeline {
     stage('Checkout') {
       steps {
         echo '[Checkout] Clonando o repositório (simulado)...'
-        sh 'sleep 1'
+        git url: 'https://github.com/hebertmm/appnovo.git',
+                    branch: 'main'
       }
     }
 
     stage('Build') {
       steps {
         echo '[Build] Compilando a aplicação (simulado)...'
-        sh 'sleep 1'
+        sh 'ls -la'
+        sh 'cat README.md || echo "Arquivo README.md não encontrado"'
       }
     }
 
