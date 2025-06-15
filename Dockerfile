@@ -16,5 +16,6 @@ RUN curl -L -o apictl.tar.gz https://github.com/wso2/product-apim-tooling/releas
     chmod +x /usr/local/bin/apictl && \
     rm -rf apictl.zip apictl-${APICTL_VERSION}-linux-x64
 
-# Definir entrada padrão
+RUN apk add --no-cache rsync openssh
+    # Definir entrada padrão
 CMD ["apictl", "version"]
