@@ -16,7 +16,7 @@ pipeline {
     stage('Checkout') {
       steps {
         echo '[Checkout] Clonando o repositório (simulado)...'
-        git url: 'https://github.com/hebertmm/appnovo.git',
+        git url: 'https://github.com/hebertmm/teste.git',
                     branch: 'main'
       }
     }
