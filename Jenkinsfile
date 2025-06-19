@@ -44,11 +44,15 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        withCredentials([sshUserPrivateKey(credentialsId: 'winserver_user_ssh', keyFileVariable: 'SSH_KEY', usernameVariable: 'USERNAME')]) {
+        withCredentials([usernamePassword(credentialsId: 'wso2-credential', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
           echo '[Deploy] Realizando o deploy (simulado)...'
-          // sh '''
-          //   ssh -i $SSH_KEY -o StrictHostKeyChecking=no $USERNAME@$DEST_HOST "dir C: || dir /c/temp"
-          // '''  
+          container('simple-agent') {
+          sh '''
+            apictl add env ds --apim https://apimds.k3d.local:9443
+            apictl login ds -u $WSO2_USER -p $WSO2_PASS --insecure
+            apictl import-api -f . --environment ds --update --preserve-provider=false
+          '''
+        } 
         }
       }
     }
