@@ -24,7 +24,7 @@ pipeline {
     stage('Validação com redocly') {
       steps {
         container('redocly') {
-          sh 'redocly lint Definitions/swagger.yaml --extends minimal --format stylish|| true'
+          sh 'redocly lint Definitions/swagger.yaml --extends minimal --format checkstyle|| true'
         }
       }
     }
@@ -63,6 +63,7 @@ pipeline {
     }
     always {
       echo '[Pipeline] Etapa pós-execução.'
+      recordIssues tools: [checkStyle(pattern: 'redocly-checkstyle.xml')]
     }
   }
 }
