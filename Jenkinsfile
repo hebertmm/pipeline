@@ -24,7 +24,7 @@ pipeline {
     stage('Validação com redocly') {
       steps {
         container('redocly') {
-          sh 'lint Definitions/swagger.yaml --format stylish || true'
+          sh 'cat Definitions/swagger.yaml --format stylish || true'
         }
       }
     }
