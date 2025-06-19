@@ -50,7 +50,7 @@ pipeline {
           sh '''
             apictl add env ds --apim https://apimds.k3d.local:9443
             apictl login ds -u $USERNAME -p $PASSWORD --insecure
-            apictl import-api -f . --environment ds --update --preserve-provider=false
+            apictl import-api -f . --environment ds --update --preserve-provider=false --insecure
           '''
         } 
         }
