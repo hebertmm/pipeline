@@ -49,7 +49,7 @@ pipeline {
           container('simple-agent') {
           sh '''
             apictl add env ds --apim https://apimds.k3d.local:9443 --insecure
-            apictl login ds -u $USERNAME --password-stdin $PASSWORD --insecure
+            echo $PASSWORD | apictl login ds -u $USERNAME --password-stdin  --insecure
             apictl import api -f . --environment ds --update --insecure
           '''
         } 
