@@ -48,9 +48,9 @@ pipeline {
           echo '[Deploy] Realizando o deploy (simulado)...'
           container('simple-agent') {
           sh '''
-            apictl add env ds --apim https://apimds.k3d.local:9443
+            apictl add env ds --apim https://apimds.k3d.local:9443 --insecure
             apictl login ds -u $USERNAME -p $PASSWORD --insecure
-            apictl import api -f . --environment ds --update --preserve-provider=false --insecure
+            apictl import api -f . --environment ds --update --insecure
           '''
         } 
         }
