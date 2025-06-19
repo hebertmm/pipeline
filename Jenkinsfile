@@ -24,7 +24,7 @@ pipeline {
     stage('Validação com redocly') {
       steps {
         container('redocly') {
-          sh 'redocly/cli lint openapi.yaml --format stylish || true'
+          sh 'lint Definitions/swagger.yaml --format stylish || true'
         }
       }
     }
