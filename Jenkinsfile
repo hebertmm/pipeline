@@ -21,11 +21,11 @@ pipeline {
       }
     }
 
-    stage('Build') {
+    stage('Validação com redocly') {
       steps {
-        echo '[Build] Compilando a aplicação (simulado)...'
-        sh 'ls -la'
-        sh 'cat README.md || echo "Arquivo README.md não encontrado"'
+        container('redocly') {
+          sh 'redocly/cli lint openapi.yaml --format stylish || true'
+        }
       }
     }
 
