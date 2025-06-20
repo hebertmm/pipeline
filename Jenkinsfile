@@ -49,7 +49,7 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'artifactory-credential', passwordVariable: 'ARTIFACTORY_PASSWORD', usernameVariable: 'ARTIFACTORY_USERNAME')]) {
           container('simple-agent') {
             sh '''
-              echo ls *.zip
+              echo $ZIP_FILE
             '''
           }
         }
