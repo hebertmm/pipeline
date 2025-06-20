@@ -48,12 +48,14 @@ pipeline {
         echo '[Deploy] Realizando o deploy no artifactory...'
         withCredentials([usernamePassword(credentialsId: 'artifactory-credential', passwordVariable: 'ARTIFACTORY_PASSWORD', usernameVariable: 'ARTIFACTORY_USERNAME')]) {
           container('simple-agent') {
-            def api = readYaml file: 'api.yaml'
-            def bundleName = "${api.name}_${api.version}.zip"
-            echo "Nome do bundle: ${bundleName}"
-            sh '''
-              echo ls *.zip
-            '''
+            script {
+              def api = readYaml file: 'api.yaml'
+              def bundleName = "${api.name}_${api.version}.zip"
+              echo "Nome do bundle: ${bundleName}"
+              sh '''
+                echo ls *.zip
+              '''
+            }  
           }
         }
       }
