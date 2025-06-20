@@ -36,7 +36,7 @@ pipeline {
           sh '''
             apictl add env ds --apim https://apimds.k3d.local:9443 --insecure
             echo $PASSWORD | apictl login ds -u $USERNAME --password-stdin  --insecure
-            apictl bundle --source .
+            ZIP_FILE = $(apictl bundle --source .)
           '''
         } 
         }
