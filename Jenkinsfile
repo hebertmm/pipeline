@@ -36,7 +36,7 @@ pipeline {
           sh '''
             apictl add env ds --apim https://apimds.k3d.local:9443 --insecure
             echo $PASSWORD | apictl login ds -u $USERNAME --password-stdin  --insecure
-            ZIP_FILE = $(apictl bundle --source .)
+            apictl bundle --source .
           '''
         } 
         }
@@ -49,7 +49,7 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'artifactory-credential', passwordVariable: 'ARTIFACTORY_PASSWORD', usernameVariable: 'ARTIFACTORY_USERNAME')]) {
           container('simple-agent') {
             sh '''
-              echo $ZIP_FILE
+              echo ls *.zip
             '''
           }
         }
