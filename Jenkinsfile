@@ -53,9 +53,7 @@ pipeline {
               def bundleName = "${api.name}_${api.version}.zip"
               echo "Nome do bundle: ${bundleName}"
               sh '''
-                curl -u ${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD} \\
-                  -T ${bundleName} \\
-                  "http://artifactory.k3d.local:8081/artifactory/generic-local/apis/${bundleName}"
+                curl -u ${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD} -T ${bundleName} "http://artifactory.k3d.local:8081/artifactory/generic-local/apis/${bundleName}"
               '''
             }  
           }
