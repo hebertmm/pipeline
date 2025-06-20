@@ -3,7 +3,7 @@
 pipeline {
   agent {
     kubernetes {
-      yaml libraryResource('pod_templates/apictl-alpine.yaml')
+      yaml libraryResource('pod_templates/apictl-ubi9.yaml')
       defaultContainer 'simple-agent'
     }
   }
