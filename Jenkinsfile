@@ -29,30 +29,29 @@ pipeline {
       }
     }
 
-    stage('Test') {
+    stage('Build ') {
       steps {
-        saudacao("Hebert")
-      }
-    }
-
-    stage('Versão do apictl') {
-      steps {
-        echo '[APICTL] Teste de versão do apictl (simulado)...'
-        sh 'apictl version'
+        withCredentials([usernamePassword(credentialsId: 'wso2-credential', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+          container('simple-agent') {
+          sh '''
+            apictl add env ds --apim https://apimds.k3d.local:9443 --insecure
+            echo $PASSWORD | apictl login ds -u $USERNAME --password-stdin  --insecure
+            apictl bundle --source .
+          '''
+        } 
+        }
       }
     }
 
     stage('Deploy') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'wso2-credential', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
-          echo '[Deploy] Realizando o deploy (simulado)...'
+        echo '[Deploy] Realizando o deploy no artifactory...'
+        withCredentials([usernamePassword(credentialsId: 'artifactory-credential', passwordVariable: 'ARTIFACTORY_PASSWORD', usernameVariable: 'ARTIFACTORY_USERNAME')]) {
           container('simple-agent') {
-          sh '''
-            apictl add env ds --apim https://apimds.k3d.local:9443 --insecure
-            echo $PASSWORD | apictl login ds -u $USERNAME --password-stdin  --insecure
-            apictl import api -f . --environment ds --update --insecure
-          '''
-        } 
+            sh '''
+              echo ls *.zip
+            '''
+          }
         }
       }
     }
