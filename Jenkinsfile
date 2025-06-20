@@ -49,7 +49,7 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'artifactory-credential', passwordVariable: 'ARTIFACTORY_PASSWORD', usernameVariable: 'ARTIFACTORY_USERNAME')]) {
           container('simple-agent') {
             script {
-              def api = readYaml file: 'api.yaml'
+              def api = readYaml file: 'api_meta.yaml'
               def bundleName = "${api.name}_${api.version}.zip"
               echo "Nome do bundle: ${bundleName}"
               sh '''
